@@ -8,7 +8,14 @@ class ShoePage extends StatelessWidget {
 
     return Container(
       child: Scaffold(
-        body: CustomAppBar(title: 'For you')
+        //TODO: general pagging
+        body: Column(
+          children: <Widget>[
+            CustomAppBar(title: 'For you'),
+            SizedBox(height: 20),
+            ShoePreview()
+          ],
+        ),
       ),
     );
   }
