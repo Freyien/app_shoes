@@ -1,6 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
+import 'package:provider/provider.dart';
+
+import 'package:app_shoes/src/models/ShoeModel.dart';
 import 'package:app_shoes/src/pages/show_detail_page.dart';
 
 class ShoePreview extends StatelessWidget {
@@ -12,7 +15,7 @@ class ShoePreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _padding = (this.fullScreen) ? EdgeInsets.symmetric(vertical: 0) : EdgeInsets.symmetric(vertical: 5);
-    final _height = (this.fullScreen) ? 295.0 : 400.0;
+    final _height = (this.fullScreen) ? 295.0 : 430.0;
     var   _borderRadius;
 
     if (this.fullScreen)
@@ -23,7 +26,7 @@ class ShoePreview extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (!fullScreen)
-          Navigator.push(context, CupertinoPageRoute(builder: (BuildContext context) => ShoeDetail()));
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ShoeDetail()));
       },
       child: Padding(
         padding: _padding,
@@ -103,12 +106,14 @@ class _SizeShoe extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
+
           _SizeShoeBox(7),
           _SizeShoeBox(7.5),
           _SizeShoeBox(8),
           _SizeShoeBox(8.5),
-          _SizeShoeBox(9, isSelected: true),
+          _SizeShoeBox(9),
           _SizeShoeBox(9.5),
+
         ],
       ),
     );
@@ -117,36 +122,43 @@ class _SizeShoe extends StatelessWidget {
 
 class _SizeShoeBox extends StatelessWidget {
   final double size;
-  final bool isSelected;
   
   _SizeShoeBox(
-    this.size, { 
-    this.isSelected = false 
-  });
+    this.size
+  );
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      width: 45,
-      height: 45,
-      decoration: BoxDecoration(
-        color: (this.isSelected) ? Color(0XffF1A23A) : Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          if (this.isSelected)
-            BoxShadow(
-              color: Color(0xffF1A23A),
-              blurRadius: 10,
-              offset: Offset(0, 5)
-            )
-        ]
-      ),
-      child: Text('${size.toString().replaceAll('.0', '')}',
-        style: TextStyle( 
-          color: (this.isSelected) ? Colors.white : Color(0xffF1A23A),
-          fontWeight: FontWeight.bold,
-          fontSize: 15,
+    final shoeModel = Provider.of<ShoeModel>(context);
+    final isSelected = shoeModel.size == size;
+
+    return GestureDetector(
+      onTap: () {
+        shoeModel.size = this.size;
+      },
+      child: Container(
+        alignment: Alignment.center,
+        margin: EdgeInsets.only(top: 40),
+        width: 45,
+        height: 45,
+        decoration: BoxDecoration(
+          color: (isSelected) ? Color(0XffF1A23A) : Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            if (isSelected)
+              BoxShadow(
+                color: Color(0xffF1A23A),
+                blurRadius: 10,
+                offset: Offset(0, 5)
+              )
+          ]
+        ),
+        child: Text('${size.toString().replaceAll('.0', '')}',
+          style: TextStyle( 
+            color: (isSelected) ? Colors.white : Color(0xffF1A23A),
+            fontWeight: FontWeight.bold,
+            fontSize: 15,
+          ),
         ),
       ),
     );

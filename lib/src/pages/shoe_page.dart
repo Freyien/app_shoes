@@ -13,7 +13,7 @@ class ShoePage extends StatelessWidget {
 
             //appbar
             CustomAppBar(title: 'For you'),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
 
             //Page Content
             _ShoeContent(),
