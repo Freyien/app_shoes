@@ -5,15 +5,10 @@ import 'package:app_shoes/src/widgets/custom_widgets.dart';
 class ShoePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return Container(
       child: Scaffold(
         body: Column(
           children: <Widget>[
-
-            //appbar
-            CustomAppBar(title: 'For you'),
-            SizedBox(height: 10),
 
             //Page Content
             _ShoeContent(),
@@ -38,6 +33,10 @@ class _ShoeContent extends StatelessWidget {
         child: Column(
           children: <Widget>[
 
+            //appbar
+            CustomAppBar(title: 'For you'),
+            SizedBox(height: 10),
+
             //show preview
             Hero(
               tag: 'shoe-1',
@@ -47,6 +46,7 @@ class _ShoeContent extends StatelessWidget {
                 )
               )
             ),
+            
             ShowDescription(
               title: 'Nike Air Max 720',
               description: "The Nike Air Max 720 goes bigger than ever before with Nike's taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so. ",

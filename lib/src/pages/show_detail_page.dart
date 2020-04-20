@@ -5,11 +5,14 @@ import 'package:provider/provider.dart';
 
 import 'package:app_shoes/src/widgets/custom_widgets.dart';
 import 'package:app_shoes/src/models/ShoeModel.dart';
+import 'package:app_shoes/src/helpers/helpers.dart';
 
 class ShoeDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ChangeStatusLigth();
+    
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -33,6 +36,7 @@ class ShoeDetail extends StatelessWidget {
                   highlightElevation: 0,
                   elevation: 0,
                   onPressed: (){
+                    ChangeStatusDark();
                     Navigator.pop(context);
                   },
                 )
