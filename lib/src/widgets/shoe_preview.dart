@@ -1,6 +1,7 @@
-import 'dart:ui';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:app_shoes/src/pages/show_detail_page.dart';
 
 class ShoePreview extends StatelessWidget {
   final bool fullScreen;
@@ -11,7 +12,7 @@ class ShoePreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _padding = (this.fullScreen) ? EdgeInsets.symmetric(vertical: 0) : EdgeInsets.symmetric(vertical: 5);
-    final _height = (this.fullScreen) ? 420.0 : 430.0;
+    final _height = (this.fullScreen) ? 295.0 : 400.0;
     var   _borderRadius;
 
     if (this.fullScreen)
@@ -19,28 +20,34 @@ class ShoePreview extends StatelessWidget {
     else
       _borderRadius = BorderRadius.circular(50);
 
-    return Padding(
-      padding: _padding,
-      child: Container(
-        width: double.infinity,
-        height: _height,
-        decoration: BoxDecoration(
-          color: Color(0xffFFCF53),
-          borderRadius: _borderRadius
+    return GestureDetector(
+      onTap: () {
+        if (!fullScreen)
+          Navigator.push(context, CupertinoPageRoute(builder: (BuildContext context) => ShoeDetail()));
+      },
+      child: Padding(
+        padding: _padding,
+        child: Container(
+          width: double.infinity,
+          height: _height,
+          decoration: BoxDecoration(
+            color: Color(0xffFFCF53),
+            borderRadius: _borderRadius
+          ),
+          child: Column(
+            children: <Widget>[
+
+              //Shadow shoe
+              _Shoe(),
+
+              //Size shoe
+              if (!fullScreen)
+                _SizeShoe()
+
+            ],
+          ),
+
         ),
-        child: Column(
-          children: <Widget>[
-
-            //Shadow shoe
-            _Shoe(),
-
-            //Size shoe
-            if (!fullScreen)
-              _SizeShoe()
-
-          ],
-        ),
-
       ),
     );
   }
@@ -51,7 +58,7 @@ class _Shoe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(50),
+      padding: EdgeInsets.only(top: 30, right: 50, bottom: 10, left: 50),
       child: Stack(
         children: <Widget>[
 
@@ -61,7 +68,7 @@ class _Shoe extends StatelessWidget {
             right: 0,
           ),
 
-          Image(image: AssetImage('assets/imgs/azul.png'))
+          Image(image: AssetImage('assets/imgs/azul.png'), height: 250,)
         ],
       ),
     );
@@ -138,7 +145,8 @@ class _SizeShoeBox extends StatelessWidget {
       child: Text('${size.toString().replaceAll('.0', '')}',
         style: TextStyle( 
           color: (this.isSelected) ? Colors.white : Color(0xffF1A23A),
-          fontWeight: FontWeight.bold
+          fontWeight: FontWeight.bold,
+          fontSize: 15,
         ),
       ),
     );
