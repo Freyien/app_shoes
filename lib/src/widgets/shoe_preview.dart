@@ -87,7 +87,7 @@ class _ShadhowShoe extends StatelessWidget {
     return Transform.rotate(
       angle: -0.4,
       child: Container(
-        width: 230,
+        width: 200,
         height: 100,
         decoration: BoxDecoration(
           borderRadius: BorderRadiusDirectional.circular(100),
@@ -114,7 +114,6 @@ class _SizeShoe extends StatelessWidget {
           _SizeShoeBox(8),
           _SizeShoeBox(8.5),
           _SizeShoeBox(9),
-          _SizeShoeBox(9.5),
 
         ],
       ),
