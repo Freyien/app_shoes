@@ -11,12 +11,16 @@ class ShoePage extends StatelessWidget {
         //TODO: general pagging
         body: Column(
           children: <Widget>[
+
             //appbar
             CustomAppBar(title: 'For you'),
             SizedBox(height: 20),
 
             //Page Content
-            _ShoeContent()
+            _ShoeContent(),
+
+            AddShoppingCartButton(amount: 180.0)
+
           ],
         ),
       ),
@@ -40,7 +44,7 @@ class _ShoeContent extends StatelessWidget {
               description: "The Nike Air Max 720 goes bigger than ever before with Nike's taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so.",
             )
 
-            
+
           ],
         ),
       )
