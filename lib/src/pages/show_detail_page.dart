@@ -10,11 +10,26 @@ class ShoeDetail extends StatelessWidget {
       body: Column(
         children: <Widget>[
 
-          //Image shoe
-          ShoePreview(fullScreen: true),
+          Stack(
+            children: <Widget>[
+              ShoePreview(fullScreen: true),
+              Positioned(
+                top: 50 ,
+                child: FloatingActionButton(
+                  child: Icon(Icons.chevron_left, size: 40),
+                  backgroundColor: Colors.transparent,
+                  highlightElevation: 0,
+                  elevation: 0,
+                  onPressed: (){},
+                )
+              )
+            ]
+          ),
 
+          //Image shoe
           Expanded(
             child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 children: <Widget>[
@@ -29,7 +44,9 @@ class ShoeDetail extends StatelessWidget {
                   _AmountBuyNow(),
 
                   //Colors
-                  _ColorButtonsAndMore()
+                  _ColorButtonsAndMore(),
+
+                  _ReactionButtons()
 
                 ],
               ),
@@ -39,6 +56,45 @@ class ShoeDetail extends StatelessWidget {
 
         ],
       )
+    );
+  }
+}
+
+class _ReactionButtons extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 25),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          _ReactionButton( Icon(Icons.star, color: Colors.orange) ),
+          _ReactionButton( Icon(Icons.add_shopping_cart, color: Colors.grey.withOpacity(.4)) ),
+          _ReactionButton( Icon(Icons.settings, color: Colors.grey.withOpacity(.4)) )
+        ],
+      ),
+    );
+  }
+}
+
+class _ReactionButton extends StatelessWidget {
+  final Icon icon;
+
+  const _ReactionButton(this.icon);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 55,
+      height: 55,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(.20), spreadRadius: -5, blurRadius: 20, offset: Offset(0, 10))
+        ]
+      ),
+      child: this.icon,
     );
   }
 }

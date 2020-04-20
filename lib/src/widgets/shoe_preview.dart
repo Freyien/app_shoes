@@ -15,7 +15,7 @@ class ShoePreview extends StatelessWidget {
     var   _borderRadius;
 
     if (this.fullScreen)
-      _borderRadius = BorderRadius.only(bottomLeft: Radius.circular(50), bottomRight: Radius.circular(50));
+      _borderRadius = BorderRadius.only(bottomLeft: Radius.circular(40), bottomRight: Radius.circular(40));
     else
       _borderRadius = BorderRadius.circular(50);
 
