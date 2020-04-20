@@ -1,7 +1,10 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
+import 'package:animate_do/animate_do.dart';
+import 'package:provider/provider.dart';
+
 import 'package:app_shoes/src/widgets/custom_widgets.dart';
+import 'package:app_shoes/src/models/ShoeModel.dart';
 
 class ShoeDetail extends StatelessWidget {
 
@@ -122,10 +125,10 @@ class _ColorButtonsAndMore extends StatelessWidget {
           Expanded(
             child: Stack(
               children: <Widget>[
-                Positioned( left: 75, child: _ColorButton(Color(0xffC6D642), 4) ),
-                Positioned( left: 50, child: _ColorButton(Color(0xffFFAD29), 3) ),
-                Positioned( left: 25, child: _ColorButton(Color(0xff2099F1), 2) ),
-                _ColorButton(Color(0xff364D56), 1),
+                Positioned( left: 90, child: _ColorButton(Color(0xffC6D642), 4, 'assets/imgs/verde.png') ),
+                Positioned( left: 60, child: _ColorButton(Color(0xffFFAD29), 3, 'assets/imgs/amarillo.png') ),
+                Positioned( left: 30, child: _ColorButton(Color(0xff2099F1), 2, 'assets/imgs/azul.png') ),
+                _ColorButton(Color(0xff364D56), 1, 'assets/imgs/negro.png'),
               ],
             )
           ),
@@ -141,22 +144,30 @@ class _ColorButtonsAndMore extends StatelessWidget {
 }
 
 class _ColorButton extends StatelessWidget {
+  final String path;
   final Color color;
   final int index;
 
-  _ColorButton(this.color, this.index);
+  _ColorButton(this.color, this.index, this.path);
 
   @override
   Widget build(BuildContext context) {
+    final shoeModel = Provider.of<ShoeModel>(context);
+    
     return FadeInLeft(
       delay: Duration(milliseconds: this.index * 200),
       duration: Duration(milliseconds: 500),
-      child: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          color: this.color,
-          shape: BoxShape.circle
+      child: GestureDetector(
+        onTap: () {
+          shoeModel.assetImage = this.path;
+        },
+        child: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: this.color,
+            shape: BoxShape.circle
+          ),
         ),
       ),
     );
