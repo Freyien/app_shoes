@@ -33,6 +33,7 @@ class _ShoeContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 30),
         physics: BouncingScrollPhysics(),
         child: Column(
           children: <Widget>[
@@ -41,7 +42,7 @@ class _ShoeContent extends StatelessWidget {
             ShoePreview(),
             ShowDescription(
               title: 'Nike Air Max 720',
-              description: "The Nike Air Max 720 goes bigger than ever before with Nike's taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so.",
+              description: "The Nike Air Max 720 goes bigger than ever before with Nike's taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so. ",
             )
 
 
